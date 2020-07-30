@@ -39,7 +39,10 @@ $routes->get('/contact', 'Pages::contact');
 
 
 // Komik Pages
-$routes->get('/komik/detail/(:segment)', 'Komik::detail/$1');
+$routes->get('/komik/create', 'Komik::create');
+$routes->get('/komik/edit/(:segment)', 'Komik::edit/$1');
+$routes->delete('/komik/(:num)', 'Komik::delete/$1');
+$routes->get('/komik/(:any)', 'Komik::detail/$1');
 
 
 
