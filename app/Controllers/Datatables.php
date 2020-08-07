@@ -4,10 +4,10 @@ namespace App\Controllers;
 
 use CodeIgniter\Controllers;
 use App\Models\MDatatables;
-use Config\Services;
 
 class Datatables extends BaseController
 {
+
     public function index()
     {
         return view('index_datatables');
@@ -15,16 +15,16 @@ class Datatables extends BaseController
 
     public function listdata()
     {
-        $request = Services::request();
+        $request = \Config\Services::request();
         $datamodel = new MDatatables($request);
+
         if ($request->getMethod(true) == 'POST') {
             $lists = $datamodel->get_datatables();
+            $no = $request->getPost("start") + 1;
             $data = [];
-            $no = $request->getPost("start");
             foreach ($lists as $list) {
-                $no++;
                 $row = [];
-                $row[] = $no;
+                $row[] = $no++;
                 $row[] = $list->NamaTeman;
                 $row[] = $list->Alamat;
                 $row[] = $list->JenisKelamin;
