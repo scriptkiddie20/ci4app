@@ -18,8 +18,10 @@ class Datatables extends BaseController
         $request = \Config\Services::request();
         $datamodel = new MDatatables($request);
 
+        // $jenkel = $this->request->getPost('JenisKelamin');
+
         if ($request->getMethod(true) == 'POST') {
-            $lists = $datamodel->get_datatables();
+            $lists = $datamodel->getDatatables();
             $no = $request->getPost("start") + 1;
             $data = [];
             foreach ($lists as $list) {
@@ -32,8 +34,8 @@ class Datatables extends BaseController
             }
             $output = [
                 "draw" => $request->getPost('draw'),
-                "recordsTotal" => $datamodel->count_all(),
-                "recordsFiltered" => $datamodel->count_filtered(),
+                "recordsTotal" => $datamodel->countAll(),
+                "recordsFiltered" => $datamodel->countFiltered(),
                 "data" => $data
             ];
             echo json_encode($output);
