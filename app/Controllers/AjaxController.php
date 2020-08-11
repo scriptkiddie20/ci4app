@@ -28,7 +28,7 @@ class AjaxController extends BaseController
                 $row[] = $list->NamaTeman;
                 $row[] = $list->Alamat;
                 $row[] = $list->JenisKelamin;
-                $row[] = "<a href=\"#\" class=\"btn btn-primary btn-sm\" onclick=\"detail($list->Id)\">Detail</a href=\"#\"> <a href=\"#\" class=\"btn btn-info btn-sm\" onclick=\"edit($list->Id)\">Edit</a href=\"#\"> <a href=\"#\" class=\"btn btn-danger btn-sm\" onclick=\"delete($list->Id)\">Delete</a href=\"#\">";
+                $row[] = "<a href=\"/ajaxcontroller/detail/$list->Id\" class=\"btn btn-primary btn-sm\">Detail</a> <button class=\"btn btn-info btn-sm\" onclick=\"edit_barang($list->Id)\">Edit</button> <button class=\"btn btn-danger btn-sm\" onclick=\"delete($list->Id)\">Delete</button>";
                 $data[] = $row;
             }
             $output = [
@@ -45,7 +45,7 @@ class AjaxController extends BaseController
     {
         $model = new AjaxModel();
         $data = $model->ajaxCrud($id);
-        dd($data);
+        echo json_encode($data);
     }
 
     public function tambahData()
@@ -62,6 +62,12 @@ class AjaxController extends BaseController
         $data = [];
 
         $model->save($data);
+    }
+
+    public function deleteData($id)
+    {
+        $model = new AjaxModel();
+        $model->delete($id);
     }
 
     //--------------------------------------------------------------------

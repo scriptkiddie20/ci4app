@@ -14,7 +14,7 @@ class AjaxModel extends Model
     protected $db;
     protected $dt;
 
-    public function __construct($request)
+    public function __construct($request = null)
     {
         $this->db = db_connect();
         $this->request = $request;
@@ -26,9 +26,9 @@ class AjaxModel extends Model
     {
         if ($id == false) {
             return $this->findAll();
-        } else {
-            return $this->getWhere(['id' => $id]);
         }
+        $result = $this->where(['id' => $id])->get();
+        return $result->getRow();
     }
 
     private function _getDatatables()

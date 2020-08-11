@@ -18,7 +18,7 @@
         <th>Nama Teman</th>
         <th>Alamat</th>
         <th>Jenis Kelamin</th>
-        <th>Jenis Kelamin</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -30,7 +30,7 @@
         <th>Nama Teman</th>
         <th>Alamat</th>
         <th>Jenis Kelamin</th>
-        <th>Jenis Kelamin</th>
+        <th>Action</th>
       </tr>
     </tfoot>
   </table>
