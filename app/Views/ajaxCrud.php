@@ -15,10 +15,10 @@
     <thead>
       <tr>
         <th>No.</th>
-        <th>Nama Barang</th>
-        <th>Stok</th>
-        <th>Kategori</th>
-        <th>Action</th>
+        <th>Nama Teman</th>
+        <th>Alamat</th>
+        <th>Jenis Kelamin</th>
+        <th>Jenis Kelamin</th>
       </tr>
     </thead>
     <tbody>
@@ -27,10 +27,10 @@
     <tfoot>
       <tr>
         <th>No.</th>
-        <th>Nama Barang</th>
-        <th>Stok</th>
-        <th>Kategori</th>
-        <th>Action</th>
+        <th>Nama Teman</th>
+        <th>Alamat</th>
+        <th>Jenis Kelamin</th>
+        <th>Jenis Kelamin</th>
       </tr>
     </tfoot>
   </table>

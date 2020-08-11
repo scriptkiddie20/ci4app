@@ -6,33 +6,80 @@ use CodeIgniter\Model;
 
 class AjaxModel extends Model
 {
-    protected $table = 'tbl_teman';
+    protected $table = 'tb_teman';
+    protected $column_search = ['NamaTeman', 'Alamat', 'JenisKelamin'];
+    protected $column_order = [null, 'NamaTeman', 'Alamat', 'JenisKelamin'];
+    protected $order = ['NamaTeman' => 'asc'];
+    protected $request;
+    protected $db;
+    protected $dt;
 
-    function getTeman($id = false)
+    public function __construct($request)
+    {
+        $this->db = db_connect();
+        $this->request = $request;
+
+        $this->dt = $this->db->table($this->table);
+    }
+
+    public function ajaxCrud($id = false)
     {
         if ($id == false) {
-            $this->join('tbl_jeniskelamin', 'tbl_teman.jk_id = tbl_jeniskelamin.id');
             return $this->findAll();
         } else {
             return $this->getWhere(['id' => $id]);
         }
     }
 
-    function simpanTeman($data)
+    private function _getDatatables()
     {
-        $simpan = $this->table($this->table)->insert($data);
-        return $simpan;
+        $request = $this->request;
+
+        // searching
+        $i = 0;
+        foreach ($this->column_search as $search) {
+            if ($i === 0) {
+                $this->dt->groupStart();
+                $this->dt->like($search, $request->getPost('search')['value']);
+            } else {
+                $this->dt->orLike($search, $request->getPost('search')['value']);
+            }
+
+            if (count($this->column_search) - 1 == $i) {
+                $this->dt->groupEnd();
+            }
+            $i++;
+        }
+
+        // ordering
+        if ($request->getPost('order')) {
+            $this->dt->orderBy($this->column_order[$request->getPost('order')['0']['column']], $request->getPost('order')['0']['dir']);
+        } else if ($this->order) {
+            $order = $this->order;
+            $this->dt->orderBy(key($order), $order[key($order)]);
+        }
     }
 
-    function updateTeman($data, $id)
+    function getDatatables()
     {
-        $update = $this->table($this->table)->update($data, ['id' => $id]);
-        return $update;
+        $this->_getDatatables();
+        $request = $this->request;
+
+        if ($request->getPost('length') != -1) {
+            $this->dt->limit($request->getPost('length'), $request->getPost('start'));
+            $query = $this->dt->get();
+            return $query->getResult();
+        }
     }
 
-    function deleteTeman($id)
+    function countAll()
     {
-        $delete = $this->table($this->table)->delete(['id' => $id]);
-        return $delete;
+        return $this->dt->countAllResults();
+    }
+
+    function countFiltered()
+    {
+        $this->_getDatatables();
+        return $this->dt->countAllResults();
     }
 }
