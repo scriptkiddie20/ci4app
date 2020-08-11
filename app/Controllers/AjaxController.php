@@ -21,33 +21,4 @@ class AjaxController extends BaseController
         ];
         return view('ajaxCrud', $data);
     }
-
-    function getTeman()
-    {
-        $data = $this->model->getTeman();
-        echo json_encode($data);
-    }
-
-    function simpanTeman()
-    {
-        $data = [
-
-        ];
-        $this->model->simpanTeman($data);
-    }
-
-    function updateTeman()
-    {
-        $id = $this->request->getPost();
-        $data = [
-
-        ];
-        $this->model->updateTeman($data, $id)
-    }
-
-    function deleteTeman()
-    {
-        $id = $this->request->getPost();
-        $this->model->deleteTeman($id);
-    }
 }
