@@ -41,10 +41,11 @@ class AjaxController extends BaseController
         }
     }
 
-    public function detail()
+    public function detail($id)
     {
         $model = new AjaxModel();
-        $model->ajaxCrud($id);
+        $data = $model->ajaxCrud($id);
+        dd($data);
     }
 
     public function tambahData()
