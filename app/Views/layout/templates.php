@@ -35,6 +35,10 @@
     <link href="../vendor/assets/css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../vendor/assets/demo/demo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+    </style>
 </head>
 
 <body class="landing-page sidebar-collapse">

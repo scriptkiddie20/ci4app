@@ -9,3 +9,47 @@
 .komik-detail {
     width: 200px;
 }
+
+.box {
+    width: 90%;
+    margin: 100px auto;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .3);
+}
+
+.box .heading {
+    background: #7800cf;
+    border-radius: 7px 7px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    font-family: "Rubik";
+}
+
+.faqs {
+    padding: 0px 20px 20px;
+}
+
+::-webkit-details-marker {
+    float: right;
+    margin-top: 5px;
+}
+
+details {
+    background: #f6f6f6;
+    padding: 10px;
+    border-radius: 7px;
+    margin-top: 20px;
+    font-family: "Rubik";
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+details open {
+    background: rgba(10%, 20%, 30%, .3)
+}
+
+details summary {
+    outline: none;
+}
